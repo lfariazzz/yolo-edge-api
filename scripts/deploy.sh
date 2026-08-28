@@ -27,7 +27,8 @@ echo "[1/4] Baixando nova imagem..."
 docker compose pull
 
 # ── Sobe a nova versão ───────────────────────────────────────
-echo "[2/4] Iniciando nova versão..."
+echo "[2/4] Reconstruindo e iniciando nova versão..."
+docker compose build
 docker compose up -d
 
 # ── Aguarda o serviço estabilizar ────────────────────────────
