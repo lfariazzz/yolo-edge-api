@@ -47,20 +47,12 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.RPI_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Prepara chave SSH
+      - name: Download modelo para testes
         run: |
           pip install "dvc[ssh]"
           mkdir -p ~/.ssh
           echo "${{ secrets.RPI_SSH_KEY }}" | tr -d '\r' > ~/.ssh/dvc_key
           chmod 600 ~/.ssh/dvc_key
-
-      - name: Debug conexão SSH
-        run: |
-          ssh -v -o StrictHostKeyChecking=no -o ConnectTimeout=15 \
-            -i ~/.ssh/dvc_key lfariazzz@${{ secrets.RPI_HOST }} "echo OK" || true
-
-      - name: Download modelo para testes
-        run: |
           dvc remote modify --local local_remote keyfile ~/.ssh/dvc_key
           dvc pull
 
