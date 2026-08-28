@@ -42,6 +42,11 @@ jobs:
           pip install -r app/requirements.txt
           pip install pytest ruff
 
+      - name: Adiciona host key do Raspberry Pi
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.RPI_HOST }} >> ~/.ssh/known_hosts
+
       - name: Download modelo para testes
         run: |
           pip install "dvc[ssh]"
@@ -142,6 +147,11 @@ jobs:
 
       - name: Instalar dependências
         run: pip install ultralytics "dvc[ssh]"
+
+      - name: Adiciona host key do Raspberry Pi
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.RPI_HOST }} >> ~/.ssh/known_hosts
 
       - name: Recuperar modelo via DVC
         run: |
