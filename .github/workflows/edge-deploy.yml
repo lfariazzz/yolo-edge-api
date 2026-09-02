@@ -165,7 +165,7 @@ jobs:
         run: |
           python scripts/validate_model.py \
             --model models/yolo-epi.pt \
-            --dataset dataset/exports/epi-v1/data.yaml \
+            --dataset dataset/exports/epi-v6/data.yaml \
             --threshold 0.6
 
     # ─────────────────────────────────────────────────────────
