@@ -25,6 +25,7 @@ echo "[INFO] Imagem atual: $PREVIOUS"
 # ── Baixa a nova imagem ──────────────────────────────────────
 echo "[1/4] Baixando nova imagem..."
 docker compose pull
+python3 -m dvc pull models/yolo-epi.pt
 
 # ── Sobe a nova versão ───────────────────────────────────────
 echo "[2/4] Reconstruindo e iniciando nova versão..."
